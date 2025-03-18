@@ -1,0 +1,25 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main  # Trigger the workflow when changes are pushed to the main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # This tells GitHub Actions to run on the latest Ubuntu OS
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # This step gets your code from GitHub
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2  # Use this for Node.js projects; adjust for Python, Java, etc.
+        with:
+          node-version: '14'  # Specify the Node.js version you're using
+
+      - name: Install dependencies
+        run: npm install  # Install the required dependencies for Node.js (if using another language, adjust)
+
+      - name: Run tests
+        run: npm test  # Run tests; change this if you're using a different testing framework
